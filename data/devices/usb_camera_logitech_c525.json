@@ -1,0 +1,27 @@
+{   
+    "format": "openag-standard-v1",
+    "name": "usb_camera_logitech_c525",
+    "uuid": "575b74b2-014c-4773-8123-d96aa5808d50",
+    "peripherals": [
+        {
+            "name": "Camera",
+            "type": "USBCamera",
+            "uuid": "d5d8540e-e8c1-4dbc-80f9-9da026bd7df3",
+            "parameters": {
+                "driver_module": "usb_camera_driver",
+		        "driver_class": "USBCameraDriver",
+                "setup": {
+                  "name": "Logitech C525",
+                  "file_name": "camera/setups/logitech_c525"
+                },
+                "variables": {
+                    "sensor": null,
+                    "actuator": null
+                },
+                "communication": null,
+                "num_cameras": 1
+            }
+        }
+    ],
+    "controllers": null
+}

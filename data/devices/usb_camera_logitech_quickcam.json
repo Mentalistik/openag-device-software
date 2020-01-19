@@ -1,0 +1,27 @@
+{   
+    "format": "openag-standard-v1",
+    "name": "usb_camera_logitech_quickcam",
+    "uuid": "40df76a4-f94f-4b90-8f01-1186baef1234",
+    "peripherals": [
+        {
+            "name": "Camera",
+            "type": "USBCamera",
+            "uuid": "818fb0ec-db0e-457c-8a88-12cdb14a44b1",
+            "parameters": {
+                "driver_module": "usb_camera_driver",
+		        "driver_class": "USBCameraDriver",
+                "setup": {
+                    "name": "Logitech Quickcam",
+                    "file_name": "camera/setups/logitech_quickcam"
+                },
+                "variables": {
+                    "sensor": null,
+                    "actuator": null
+                },
+                "communication": null,
+                "num_cameras": 1
+            }
+        }
+    ],
+    "controllers": null
+}
