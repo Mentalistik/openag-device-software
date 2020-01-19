@@ -28,3 +28,4 @@ hostapd.conf
 rc.local
 openag_brain
 data/db/openag_brain.sqlite-journal
+/.vs

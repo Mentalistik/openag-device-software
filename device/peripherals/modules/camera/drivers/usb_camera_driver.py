@@ -107,7 +107,7 @@ class USBCameraDriver(CameraDriver):
 
         # Get real or simulated camera paths
         if not self.simulate:
-            camera_paths = usb.get_camera_paths(self.vendor_id, self.product_id)
+            camera_paths = ["/dev/video0"]
         else:
             camera_paths = []
             for i in range(self.num_cameras):

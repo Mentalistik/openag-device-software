@@ -1,0 +1,71 @@
+{
+	"name":  "SCD30 Temperature / Humidity / CO2 Sensor",
+	"version": "1",
+	"uuid": "6059757d-2996-48ff-9534-999a13591f32",
+	"module_name": "scd30.manager",
+	"class_name": "SCD30Manager",
+	"parameters": {
+		"variables": {
+			"sensor": {
+				"temperature_celsius": {
+					"name": {
+						"type": "string", 
+						"default": "air_temperature_celsius"
+					}
+				},
+				"humidity_percent": {
+					"name": {
+						"type": "string",
+						"default": "air_humidity_percent"
+					}
+				},
+				"co2_ppm": {
+					"name": {
+						"type": "string",
+						"default": "air_carbon_dioxide_ppm"
+					}
+				}
+			},
+			"actuator": null
+		},
+		"communication": {
+			"bus": {
+				"type": "integer",
+				"default": 1
+			},
+			"address": {
+				"type": "string",
+				"default": "0x61"
+			}
+		}
+	},
+	"events": [],
+	"info": {
+		"variables": {
+			"sensor":{
+				"temperature_celsius": {
+					"range": [-40, 125],
+			        "accuracy": {
+			            "typical": 0.2,
+			            "plot": [[-40, 0.5],[5,0.2],[60,0.2],
+			            	[100,0.5],[120,0.7]]   
+			        },
+			        "repeatability": 0.1,
+			        "response_time_seconds": 15,
+			        "yearly_drift": 0.02
+				},
+				"humidity_percent": {
+                    "range": [0, 100],
+                    "accuracy": {
+                        "typical": 1.8,
+                        "plot": [[0,3],[10,2],[90,2],[100,3]]
+                    },
+                    "repeatability": 0.1,
+                    "response_time_seconds": 8,
+                    "yearly_drift": 0.25
+				}
+			},
+			"actuator": null
+		}
+	}
+}
