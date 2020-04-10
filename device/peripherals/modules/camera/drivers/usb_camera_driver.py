@@ -1,9 +1,11 @@
 import datetime
 import os
+import os.path
 import shutil
 import threading
 import time
 from typing import Optional, Dict, Any
+from os import path
 
 # Import driver elements
 from device.peripherals.common.dac5578.driver import DAC5578Driver
@@ -140,7 +142,8 @@ class USBCameraDriver(CameraDriver):
 
             # Capture image
             self.capture_image_pygame(camera_path, capture_image_path)
-            shutil.move(capture_image_path, final_image_path)
+            if path.exists(capture_image_path):
+                shutil.move(capture_image_path, final_image_path)
 
     def capture_image_pygame(self, camera_path: str, image_path: str) -> None:
         """Captures an image with pygame."""
@@ -163,9 +166,19 @@ class USBCameraDriver(CameraDriver):
                 resolution = (int(resolution_array[0]), int(resolution_array[1]))
                 camera = pygame.camera.Camera(camera_path, resolution)
                 camera.start()
+
+                for i in range(3):
+                   self.logger.debug("Taking image to clear buffer")
+                   camera.get_image()
+
                 image = camera.get_image()
-                pygame.image.save(image, image_path)
+                pygame.image.save(image, self.ACTIVE_IMAGE_PATH)
                 camera.stop()
+
+                # Check if image meets minimum size constraint
+                size = os.path.getsize(self.ACTIVE_IMAGE_PATH)
+                if size > 160000:  # 160kB
+                    os.rename(self.ACTIVE_IMAGE_PATH, image_path)
 
         except Exception as e:
             raise exceptions.CaptureImageError(logger=self.logger) from e
