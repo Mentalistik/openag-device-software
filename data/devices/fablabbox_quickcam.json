@@ -1,7 +1,7 @@
 {
   "format": "openag-standard-v1",
-  "name": "FabLab Box",
-  "uuid": "e2902010-da88-4866-b5d0-94703ab41c3f",
+  "name": "FabLab Box Quickcam",
+  "uuid": "257aad0b-4e42-4a6c-802b-c39a90e2f49a",
   "peripherals": [
     {
       "name": "SCD30",
@@ -27,7 +27,7 @@
       }
     },
     {
-      "name": "Camera Quickcam",
+      "name": "Logitech Quickcam",
       "type": "USBCamera",
       "uuid": "cd0d4ce6-2b5b-4dce-b677-b0d8323040e9",
       "parameters": {
@@ -35,7 +35,7 @@
         "driver_class": "USBCameraDriver",
         "setup": {
           "name": "Logitech Quickcam",
-          "file_name": "camera/setups/logitech_quickcam.json"
+          "file_name": "camera/setups/logitech_quickcam"
         },
         "variables": {
           "sensor": null,
