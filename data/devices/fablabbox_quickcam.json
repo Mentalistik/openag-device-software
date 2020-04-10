@@ -1,0 +1,50 @@
+{
+  "format": "openag-standard-v1",
+  "name": "FabLab Box",
+  "uuid": "e2902010-da88-4866-b5d0-94703ab41c3f",
+  "peripherals": [
+    {
+      "name": "SCD30",
+      "type": "SCD30",
+      "uuid": "6059757d-2996-48ff-9534-999a13591f32",
+      "parameters": {
+        "setup": {
+          "name": "SCD30 Temperature / Humidity / CO2 Sensor Default",
+          "file_name": "scd30/setups/default"
+        },
+        "variables": {
+          "sensor": {
+            "temperature_celsius": "air_temperature_celsius",
+            "humidity_percent": "air_humidity_percent",
+            "co2_ppm": "air_carbon_dioxide_ppm"
+          },
+          "actuator": null
+        },
+        "communication": {
+          "bus": 1,
+          "address": "0x61"
+        }
+      }
+    },
+    {
+      "name": "Camera Quickcam",
+      "type": "USBCamera",
+      "uuid": "cd0d4ce6-2b5b-4dce-b677-b0d8323040e9",
+      "parameters": {
+        "driver_module": "usb_camera_driver",
+        "driver_class": "USBCameraDriver",
+        "setup": {
+          "name": "Logitech Quickcam",
+          "file_name": "camera/setups/logitech_quickcam.json"
+        },
+        "variables": {
+          "sensor": null,
+          "actuator": null
+        },
+        "communication": null,
+        "num_cameras": 1
+      }
+    }
+  ],
+  "controllers": null
+}
