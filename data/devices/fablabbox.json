@@ -65,7 +65,6 @@
         },
         "communication": {
           "bus": "default",
-          "mux": "default",
           "channel": 6,
           "address": "0x64"
         }
@@ -113,7 +112,6 @@
         },
         "communication": {
           "bus": "default",
-          "mux": "default",
           "channel": 6,
           "address": "0x66"
         }
