@@ -1,0 +1,27 @@
+{
+  "database_path": "<path>.sqlite",
+  "sensors": [
+    {
+      "name": "air_temperature_celsius",
+      "min": 22,
+      "max": 26
+    },
+    {
+      "name": "air_humidity_percent",
+      "min": 30,
+      "max": 60
+    },
+    {
+      "name": "air_carbon_dioxide_ppm",
+      "min": 400,
+      "max": 1000
+    }
+  ],
+  "email_account": {
+    "email": "<email>",
+    "password": "<password>"
+  },
+  "email_recipients": [
+    "<email>"
+  ]
+}
