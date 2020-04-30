@@ -1,3 +1,4 @@
+import os
 import smtplib
 import json
 import sqlite3
@@ -9,7 +10,8 @@ from email.mime.text import MIMEText
 config = None
 
 # Read config
-with open(r"<path>\SensorAlertConfig.json") as json_data_file:
+script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
+with open(script_dir + "/SensorAlertConfig.json") as json_data_file:
     config = json.load(json_data_file)
 
 # Read environment and create alert message

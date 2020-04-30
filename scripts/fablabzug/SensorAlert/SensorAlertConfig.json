@@ -1,5 +1,5 @@
 {
-  "database_path": "<path>.sqlite",
+  "database_path": "C:\\tmp\\openag_brain.sqlite",
   "sensors": [
     {
       "name": "air_temperature_celsius",
@@ -18,10 +18,10 @@
     }
   ],
   "email_account": {
-    "email": "<email>",
-    "password": "<password>"
+    "email": "fablabzug.box@gmail.com",
+    "password": ".fabLab_boxT5!"
   },
   "email_recipients": [
-    "<email>"
+    "n.scheibner@gmx.ch"
   ]
 }
