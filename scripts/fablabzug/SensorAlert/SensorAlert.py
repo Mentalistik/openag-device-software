@@ -2,6 +2,8 @@ import smtplib
 import json
 import sqlite3
 from sqlite3 import Error
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 # Configuration
 config = None
@@ -49,26 +51,24 @@ gmail_password = config["email_account"]["password"]
 
 sent_from = gmail_user
 to = config["email_recipients"]
-subject = 'Sensor Alarm'
 
 sensorString = read_current_environment_and_create_alert_message()
 if sensorString != '':
-
     body = "Einer oder mehrere Werte sind ausserhalb des idealen Bereichs:\n" + sensorString
-
-    email_text = """\
-    From: %s
-    To: %s
-    Subject: %s
-
-    %s
-    """ % (sent_from, ", ".join(to), subject, body)
+    
+    #Setup the MIME
+    message = MIMEMultipart()
+    message['From'] = sent_from
+    message['To'] = to[0]
+    message['Subject'] = 'Sensor Alarm'   #The subject line
+    #The body and the attachments for the mail
+    message.attach(MIMEText(body, 'plain'))
 
     try:
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.ehlo()
         server.login(gmail_user, gmail_password)
-        server.sendmail(sent_from, to, email_text)
+        server.sendmail(sent_from, to, message.as_string())
         server.close()
 
         print('Email sent!')
