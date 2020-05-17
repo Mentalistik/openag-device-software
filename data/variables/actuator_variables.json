@@ -112,6 +112,20 @@
     }
   },
   {
+    "key": "air_fan_percent",
+    "info": {
+      "name": {
+        "brief": "Air Fan Percent",
+        "verbose": "Air Fan Percent"
+      },
+      "unit": {
+        "brief": "%",
+        "verbose": "Percent",
+        "type": "object"
+      }
+    }
+  },
+  {
     "key": "air_chiller_percent",
     "info": {
       "name": {

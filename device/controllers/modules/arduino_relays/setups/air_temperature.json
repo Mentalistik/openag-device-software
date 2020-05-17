@@ -1,0 +1,22 @@
+{
+	"name": "Air Temperature Arduino Relays Controller",
+	"version": "1",
+	"uuid": "f783f1bb-176d-47b5-a5b4-f2ae9bf2d5a7",
+	"module_name": "arduino_relays.manager",
+	"class_name": "ArduinoRelaysControllerManager",
+	"parameters": {
+		"variables": {
+			"sensor_name": {
+				"type": "string",
+				"default": "air_temperature_celsius"
+			},
+			"negative_actuator_name": {
+				"type": "string",
+				"default": "air_fan_percent"
+			}
+		}
+	},
+	"properties": {},
+	"events": null,
+	"info": {}
+}

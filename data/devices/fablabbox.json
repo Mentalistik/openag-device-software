@@ -116,7 +116,46 @@
           "address": "0x66"
         }
       }
+    },
+    {
+      "name": "Fan",
+      "type": "ArduinoRelay",
+      "uuid": "f584f952-f72c-40a6-9d02-745318ebad2f",
+      "parameters": {
+        "setup": {
+          "name": "Fan",
+          "file_name": "actuator_relays/setups/fan"
+        },
+        "variables": {
+          "sensor": null,
+          "actuator": {
+            "output_variable": "air_fan_percent"
+          }
+        },
+        "communication": {
+          "bus": 1,
+          "is_active_high": true,
+          "address": "0x04",
+          "port": 0
+        }
+      }
     }
   ],
-  "controllers": null
+  "controllers": [
+    {
+      "name": "ArduinoRelaysController",
+      "type": "ArduinoRelaysController",
+      "uuid": "f783f1bb-176d-47b5-a5b4-f2ae9bf2d5a7",
+      "parameters": {
+        "setup": {
+          "name": "Arduino Relays Controller",
+          "file_name": "arduino_relays/setups/air_temperature"
+        },
+        "variables": {
+          "sensor_name": "air_temperature_celsius",
+          "negative_actuator_name": "air_fan_percent"
+        }
+      }
+    }
+  ]
 }

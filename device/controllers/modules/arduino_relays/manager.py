@@ -1,0 +1,93 @@
+# Import standard python modules
+from typing import Optional, Tuple, Dict, Any
+
+# Import controller manager parent class
+from device.controllers.classes.controller import manager, modes
+
+class ArduinoRelaysControllerManager(manager.ControllerManager):
+    """Manages a controller with Arduino relay logic."""
+
+    # --------------------------------------------------------------------------------------
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """Initializes manager."""
+
+        # Initialize parent class
+        super().__init__(*args, **kwargs)
+
+        # Initialize variable names
+        self.sensor_name: str = self.variables.get("sensor_name", None)
+        self.negative_actuator_name: str = self.variables.get(
+            "negative_actuator_name", None
+        )
+
+    # --------------------------------------------------------------------------------------
+    # This is the temperature sensor current temp.
+    @property
+    def sensor_value(self) -> Optional[float]:
+        """Gets sensor value."""
+        value = self.state.get_environment_reported_sensor_value(self.sensor_name)
+        if value != None:
+            return float(value)
+        return None
+
+    # --------------------------------------------------------------------------------------
+    # This is the temperature sensor "set point".
+    @property
+    def desired_sensor_value(self) -> Optional[float]:
+        """Gets desired sensor value."""
+        value = self.state.get_environment_desired_sensor_value(self.sensor_name)
+        if value != None:
+            return float(value)
+        return None
+
+    # --------------------------------------------------------------------------------------
+    @property
+    def desired_negative_actuator_percent(self) -> Optional[float]:
+        """Gets positive actuator value."""
+        value = self.state.get_environment_desired_actuator_value(
+            self.negative_actuator_name
+        )
+        if value != None:
+            return float(value)
+        return None
+
+    # --------------------------------------------------------------------------------------
+    @desired_negative_actuator_percent.setter
+    def desired_negative_actuator_percent(self, value: float) -> None:
+        """Sets reported output value in shared state."""
+        self.logger.info(self.negative_actuator_name)
+        if self.negative_actuator_name == None:
+            return
+        self.logger.info("Setting Value now")
+        self.state.set_environment_desired_actuator_value(
+            self.negative_actuator_name, value
+        )
+
+    # --------------------------------------------------------------------------------------
+    def initialize_controller(self) -> None:
+        """Initializes controller."""
+        self.logger.info("Initializing")
+        self.clear_reported_values()
+
+    # --------------------------------------------------------------------------------------
+    def update_controller(self) -> None:
+        """Updates controller."""
+
+        # Check sensor values are initialized
+        if type(self.sensor_value) != float or type(self.desired_sensor_value) != float:
+            self.desired_negative_actuator_percent = None
+            self.logger.warning("sensor_value or desired_sensor_value is not a float.")
+            return
+
+        # For now just slam between 0 and 100%.
+        if self.sensor_value > self.desired_sensor_value:
+            self.logger.debug("cooling down")
+            self.desired_negative_actuator_percent = 100.0
+        else:
+            self.logger.debug("do nothing")
+            self.desired_negative_actuator_percent = 0.0
+
+    # --------------------------------------------------------------------------------------
+    def clear_reported_values(self) -> None:
+        """Clears reported values."""
+        self.desired_negative_actuator_percent = None
