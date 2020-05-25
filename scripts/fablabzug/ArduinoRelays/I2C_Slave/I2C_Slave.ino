@@ -22,6 +22,25 @@ void setup()
   Wire.begin(4);                // join i2c bus with address #4
   Wire.onReceive(receiveEvent); // register event
   Serial.begin(9600);           // start serial for output
+
+  // running relay checks
+  digitalWrite(r1, HIGH);
+  delay(500);
+  digitalWrite(r2, HIGH);
+  delay(500);
+  digitalWrite(r3, HIGH);
+  delay(500);
+  digitalWrite(r4, HIGH);
+
+  delay(2000);
+  
+  digitalWrite(r1, LOW);
+  delay(500);
+  digitalWrite(r2, LOW);
+  delay(500);
+  digitalWrite(r3, LOW);
+  delay(500);
+  digitalWrite(r4, LOW);
 }
 
 void loop()
