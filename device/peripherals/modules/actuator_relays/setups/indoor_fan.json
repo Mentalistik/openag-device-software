@@ -1,0 +1,82 @@
+{
+	"name": "Indoor Fan",
+	"version": "1",
+	"uuid": "74aa919e-5e90-477b-ac69-e9fbde5a1644",
+	"module_name": "actuator_relays.manager",
+	"class_name": "ActuatorRelaysManager",
+	"parameters": {
+		"variables": {
+			"sensor": null,
+			"actuator": {
+				"output_variable": {
+					"name": {
+						"type": "string",
+						"default": "air_fan_percent"
+					}
+				}
+			}
+		},
+		"communication": {
+			"bus": {
+				"type": "integer",
+				"default": 1
+			},
+			"channel": {
+				"type": "integer",
+				"default": 0
+			},
+			"address": {
+				"type": "string",
+				"default": "0x04"
+			},
+			"port": {
+				"type": "number",
+				"default": 1
+			},
+			"is_active_high": {
+				"type": "boolean",
+				"default": true
+			}
+		}
+	},
+	"events": [
+		{
+			"name": "Reset",
+			"description": "Reset actuator.",
+			"value": null,
+			"sequence": null
+		},
+		{
+			"name": "Shutdown",
+			"description": "Shutdown actuator.",
+			"value": null,
+			"sequence": null
+		},
+		{
+			"name": "Enable Manual Mode",
+			"description": "Allows actuator to be controlled by manual events.",
+			"value": null,
+			"sequence": null
+		},
+		{
+			"name": "Turn On",
+			"description": "Turn on fan.",
+			"value": null,
+			"sequence": null,
+			"is_manual": true
+		},
+		{
+			"name": "Turn Off",
+			"description": "Turn off fan.",
+			"value": null,
+			"sequence": null,
+			"is_manual": true
+		}
+	],
+	"info": {
+		"variables": {
+			"sensor": null,
+			"actuator": null
+		}
+	}
+}

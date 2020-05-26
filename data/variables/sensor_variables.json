@@ -1,5 +1,19 @@
 [
   {
+    "key": "air_fan_percents",
+    "info": {
+      "name": {
+        "brief": "Air Fan Percents",
+        "verbose": "Air Fan Percents"
+      },
+      "unit": {
+        "brief": "%",
+        "verbose": "Percent",
+        "type": "number"
+      }
+    }
+  },
+  {
     "key": "air_temperature_celsius",
     "info": {
       "name": {
@@ -131,6 +145,20 @@
       "name": {
         "brief": "Spectrum",
         "verbose": "Light Spectrum Channel Percents"
+      },
+      "unit": {
+        "brief": "%",
+        "verbose": "Percent",
+        "type": "object"
+      }
+    }
+  },
+  {
+    "key": "light_percents",
+    "info": {
+      "name": {
+        "brief": "Light Percents",
+        "verbose": "Light Percents"
       },
       "unit": {
         "brief": "%",

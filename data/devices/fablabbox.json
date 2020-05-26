@@ -118,18 +118,18 @@
       }
     },
     {
-      "name": "Fan",
+      "name": "Cooling Fan",
       "type": "ArduinoRelay",
       "uuid": "f584f952-f72c-40a6-9d02-745318ebad2f",
       "parameters": {
         "setup": {
           "name": "Fan",
-          "file_name": "actuator_relays/setups/fan"
+          "file_name": "actuator_relays/setups/cooling_fan"
         },
         "variables": {
           "sensor": null,
           "actuator": {
-            "output_variable": "air_fan_percent"
+            "output_variable": "air_chiller_percent"
           }
         },
         "communication": {
@@ -139,11 +139,57 @@
           "port": 0
         }
       }
+    },
+    {
+      "name": "Indoor Fan",
+      "type": "ArduinoRelay",
+      "uuid": "74aa919e-5e90-477b-ac69-e9fbde5a1644",
+      "parameters": {
+        "setup": {
+          "name": "Fan",
+          "file_name": "actuator_relays/setups/indoor_fan"
+        },
+        "variables": {
+          "sensor": null,
+          "actuator": {
+            "output_variable": "air_fan_output_percent"
+          }
+        },
+        "communication": {
+          "bus": 1,
+          "is_active_high": true,
+          "address": "0x04",
+          "port": 1
+        }
+      }
+    },
+    {
+      "name": "Light",
+      "type": "ArduinoRelay",
+      "uuid": "ca680299-2ee3-4f20-9198-5f0546e57afb",
+      "parameters": {
+        "setup": {
+          "name": "Fan",
+          "file_name": "actuator_relays/setups/light"
+        },
+        "variables": {
+          "sensor": null,
+          "actuator": {
+            "output_variable": "light_output_percent"
+          }
+        },
+        "communication": {
+          "bus": 1,
+          "is_active_high": true,
+          "address": "0x04",
+          "port": 2
+        }
+      }
     }
   ],
   "controllers": [
     {
-      "name": "ArduinoRelaysController",
+      "name": "Cooling Fan Controller",
       "type": "ArduinoRelaysController",
       "uuid": "f783f1bb-176d-47b5-a5b4-f2ae9bf2d5a7",
       "parameters": {
@@ -153,7 +199,37 @@
         },
         "variables": {
           "sensor_name": "air_temperature_celsius",
-          "negative_actuator_name": "air_fan_percent"
+          "negative_actuator_name": "air_chiller_percent"
+        }
+      }
+    },
+    {
+      "name": "Indoor Fan Controller",
+      "type": "ArduinoRelaysController",
+      "uuid": "d2b8928e-172d-45f1-be2a-f8067fbda149",
+      "parameters": {
+        "setup": {
+          "name": "Arduino Relays Controller",
+          "file_name": "arduino_relays/setups/air_movement"
+        },
+        "variables": {
+          "desired_percent_name": "air_fan_percents",
+          "negative_actuator_name": "air_fan_output_percent"
+        }
+      }
+    },
+    {
+      "name": "Light Controller",
+      "type": "ArduinoRelaysController",
+      "uuid": "4cdbdcaa-50d0-4166-8179-127ef2276c42",
+      "parameters": {
+        "setup": {
+          "name": "Arduino Relays Controller",
+          "file_name": "arduino_relays/setups/light"
+        },
+        "variables": {
+          "desired_percent_name": "light_percents",
+          "negative_actuator_name": "light_output_percent"
         }
       }
     }

@@ -30,7 +30,7 @@ class ActuatorRelaysManager(manager.PeripheralManager):
 
         # Set default sampling interval and heartbeat
         self.default_sampling_interval = 1  # second
-        self.heartbeat = 60  # seconds
+        self.heartbeat = 30  # seconds
         self.prev_update = 0  # timestamp
 
     @property

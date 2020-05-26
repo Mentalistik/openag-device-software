@@ -1,18 +1,18 @@
 {
-	"name": "Cooling Air Fan Arduino Relays Controller",
+	"name": "Light Arduino Relays Controller",
 	"version": "1",
-	"uuid": "f783f1bb-176d-47b5-a5b4-f2ae9bf2d5a7",
+	"uuid": "4cdbdcaa-50d0-4166-8179-127ef2276c42",
 	"module_name": "arduino_relays.manager",
 	"class_name": "ArduinoRelaysControllerManager",
 	"parameters": {
 		"variables": {
-			"sensor_name": {
+			"desired_percent_name": {
 				"type": "string",
-				"default": "air_temperature_celsius"
+				"default": "light_percents"
 			},
 			"negative_actuator_name": {
 				"type": "string",
-				"default": "air_chiller_percent"
+				"default": "light_output_percent"
 			}
 		}
 	},

@@ -14,6 +14,20 @@
     }
   },
   {
+    "key": "light_output_percent",
+    "info": {
+      "name": {
+        "brief": "Light Outputs",
+        "verbose": "Light Outputs"
+      },
+      "unit": {
+        "brief": "%",
+        "verbose": "Percent",
+        "type": "object"
+      }
+    }
+  },
+  {
     "key": "network_indicator_led_status",
     "info": {
       "name": {
@@ -107,6 +121,20 @@
       "unit": {
         "brief": "On?",
         "verbose": "On?",
+        "type": "object"
+      }
+    }
+  },
+  {
+    "key": "air_fan_output_percent",
+    "info": {
+      "name": {
+        "brief": "Air Fan Percent",
+        "verbose": "Air Fan Percent"
+      },
+      "unit": {
+        "brief": "%",
+        "verbose": "Percent",
         "type": "object"
       }
     }

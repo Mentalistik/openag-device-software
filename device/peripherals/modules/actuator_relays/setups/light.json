@@ -1,7 +1,7 @@
 {
-	"name": "Fan",
+	"name": "Light",
 	"version": "1",
-	"uuid": "f584f952-f72c-40a6-9d02-745318ebad2f",
+	"uuid": "ca680299-2ee3-4f20-9198-5f0546e57afb",
 	"module_name": "actuator_relays.manager",
 	"class_name": "ActuatorRelaysManager",
 	"parameters": {
@@ -11,7 +11,7 @@
 				"output_variable": {
 					"name": {
 						"type": "string",
-						"default": "air_fan_percent"
+						"default": "light_output_percent"
 					}
 				}
 			}
@@ -31,7 +31,7 @@
 			},
 			"port": {
 				"type": "number",
-				"default": 0
+				"default": 2
 			},
 			"is_active_high": {
 				"type": "boolean",
@@ -60,14 +60,14 @@
 		},
 		{
 			"name": "Turn On",
-			"description": "Turn on fan.",
+			"description": "Turn on light.",
 			"value": null,
 			"sequence": null,
 			"is_manual": true
 		},
 		{
 			"name": "Turn Off",
-			"description": "Turn off fan.",
+			"description": "Turn off light.",
 			"value": null,
 			"sequence": null,
 			"is_manual": true

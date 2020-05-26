@@ -1,0 +1,64 @@
+{
+	"format": "openag-phased-environment-v1",
+	"version": "1",
+	"creation_timestamp_utc": "2018-12-05T16:45:41Z",
+	"name": "FabLabBox Actuator Tests",
+	"uuid": "204b2e3d-11fc-4763-923b-c675e1e24a6f",
+	"parent_recipe_uuid": null,
+	"support_recipe_uuids": null,
+	"description": {
+		"brief": "Turns on all available actuators",
+		"verbose": "Turns on all available actuators"
+	},
+	"authors": [
+		{
+			"name": "Nijo Scheibner",
+			"email": "n.scheibner@gmx.ch",
+			"uuid": "6ba16b27-1990-4413-8a88-787ae3a5afb0"
+		}
+	],
+	"cultivars": [
+		{
+			"name": "None",
+			"uuid": "a1330295-fdde-4418-9ccd-a8ccfc50f61e"
+		}
+	],
+	"cultivation_methods": [
+		{
+			"name": "None",
+			"uuid": "b6b18aa5-0e72-474c-ad42-1e7507feab94"
+		}
+	],
+	"environments": {
+		"day": {
+			"name": "Day",
+			"light_percents": 100,
+			"air_fan_percents": 100,
+			"air_temperature_celsius": 25
+		},
+		"night": {
+			"name": "Night",
+			"light_percents": 0,
+			"air_fan_percents": 0,
+			"air_temperature_celsius": 20
+		}
+	},
+	"phases": [
+		{
+			"name": "Test Day",
+			"repeat": 10,
+			"cycles": [
+				{
+					"name": "Day",
+					"environment": "day",
+					"duration_hours": 0.02
+				},
+				{
+					"name": "Night",
+					"environment": "night",
+					"duration_hours": 0.02
+				}
+			]
+		}
+	]
+}

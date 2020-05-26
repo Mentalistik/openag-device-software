@@ -16,9 +16,8 @@ class ArduinoRelaysControllerManager(manager.ControllerManager):
 
         # Initialize variable names
         self.sensor_name: str = self.variables.get("sensor_name", None)
-        self.negative_actuator_name: str = self.variables.get(
-            "negative_actuator_name", None
-        )
+        self.desired_percent_name: str = self.variables.get("desired_percent_name", None)
+        self.negative_actuator_name: str = self.variables.get("negative_actuator_name", None)
 
     # --------------------------------------------------------------------------------------
     # This is the temperature sensor current temp.
@@ -42,11 +41,23 @@ class ArduinoRelaysControllerManager(manager.ControllerManager):
 
     # --------------------------------------------------------------------------------------
     @property
+    def desired_percent(self) -> Optional[float]:
+        """Gets positive actuator value."""
+        value = self.state.get_environment_desired_sensor_value(
+            self.desired_percent_name
+        )
+        if value != None:
+            return float(value)
+        return None
+    
+    # --------------------------------------------------------------------------------------
+    @property
     def desired_negative_actuator_percent(self) -> Optional[float]:
         """Gets positive actuator value."""
         value = self.state.get_environment_desired_actuator_value(
             self.negative_actuator_name
         )
+        self.logger.info("??????????? Setting negative actuator")
         if value != None:
             return float(value)
         return None
@@ -58,7 +69,6 @@ class ArduinoRelaysControllerManager(manager.ControllerManager):
         self.logger.info(self.negative_actuator_name)
         if self.negative_actuator_name == None:
             return
-        self.logger.info("Setting Value now")
         self.state.set_environment_desired_actuator_value(
             self.negative_actuator_name, value
         )
@@ -73,19 +83,27 @@ class ArduinoRelaysControllerManager(manager.ControllerManager):
     def update_controller(self) -> None:
         """Updates controller."""
 
-        # Check sensor values are initialized
-        if type(self.sensor_value) != float or type(self.desired_sensor_value) != float:
-            self.desired_negative_actuator_percent = None
-            self.logger.warning("sensor_value or desired_sensor_value is not a float.")
-            return
+        if self.sensor_name == None:
+            # Actuator is just controlled by the desired value provided by the recipe
+            if type(self.desired_percent) != float:
+                self.desired_negative_actuator_percent = None
+                self.logger.warning("desired_percent is not a float.")
+                return
 
-        # For now just slam between 0 and 100%.
-        if self.sensor_value > self.desired_sensor_value:
-            self.logger.debug("cooling down")
-            self.desired_negative_actuator_percent = 100.0
+            self.desired_negative_actuator_percent = self.desired_percent
+
         else:
-            self.logger.debug("do nothing")
-            self.desired_negative_actuator_percent = 0.0
+            # Check sensor values are initialized
+            if type(self.sensor_value) != float or type(self.desired_sensor_value) != float:
+                self.desired_negative_actuator_percent = None
+                self.logger.warning("sensor_value or desired_sensor_value is not a float.")
+                return
+
+            # For now just slam between 0 and 100%.
+            if self.sensor_value > self.desired_sensor_value:
+                self.desired_negative_actuator_percent = 100.0
+            else:
+                self.desired_negative_actuator_percent = 0.0
 
     # --------------------------------------------------------------------------------------
     def clear_reported_values(self) -> None:
