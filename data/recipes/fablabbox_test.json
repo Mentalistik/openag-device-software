@@ -34,7 +34,7 @@
 			"name": "Day",
 			"light_percents": 100,
 			"air_fan_percents": 100,
-			"air_temperature_celsius": 25
+			"air_temperature_celsius": 30
 		},
 		"night": {
 			"name": "Night",

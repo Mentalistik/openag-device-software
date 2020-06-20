@@ -1,0 +1,198 @@
+{
+  "format": "openag-phased-environment-v1",
+  "version": "1",
+  "creation_timestamp_utc": "2018-12-05T16:45:41Z",
+  "name": "FabLabBox Grumolo Verde (Salad)",
+  "uuid": "8d0b5c57-4635-4c9e-a9b6-2936e8d5a00a",
+  "parent_recipe_uuid": null,
+  "support_recipe_uuids": null,
+  "description": {
+    "brief": "Grumolo Verde needs 8-10 days of",
+    "verbose": "Grumolo Verde"
+  },
+  "authors": [
+    {
+      "name": "Nijo Scheibner",
+      "email": "n.scheibner@gmx.ch",
+      "uuid": "6ba16b27-1990-4413-8a88-787ae3a5afb0"
+    }
+  ],
+  "cultivars": [
+    {
+      "name": "None",
+      "uuid": "50c0bbc3-4dbd-4766-a408-3da3088ed4eb"
+    }
+  ],
+  "cultivation_methods": [
+    {
+      "name": "None",
+      "uuid": "20287ab3-54e5-49a7-a187-2e2fd71b2a5f"
+    }
+  ],
+  "environments": {
+    "day": {
+      "name": "Day",
+      "light_percents": 100,
+      "air_fan_percents": 0,
+      "air_temperature_celsius": 25,
+      "air_carbon_dioxide_ppm": 500,
+      "water_electrical_conductivity_ms_cm": 2,
+      "water_potential_hydrogen": 5.5
+    },
+    "day_fan": {
+      "name": "Day Fan",
+      "light_percents": 100,
+      "air_fan_percents": 100,
+      "air_temperature_celsius": 25,
+      "air_carbon_dioxide_ppm": 500,
+      "water_electrical_conductivity_ms_cm": 2,
+      "water_potential_hydrogen": 5.5
+    },
+    "night": {
+      "name": "Night",
+      "light_percents": 0,
+      "air_fan_percents": 0,
+      "air_temperature_celsius": 20,
+      "air_carbon_dioxide_ppm": 500,
+      "water_electrical_conductivity_ms_cm": 2,
+      "water_potential_hydrogen": 5.5
+    },
+    "night_fan": {
+      "name": "Night Fan",
+      "light_percents": 0,
+      "air_fan_percents": 100,
+      "air_temperature_celsius": 20,
+      "air_carbon_dioxide_ppm": 500,
+      "water_electrical_conductivity_ms_cm": 2,
+      "water_potential_hydrogen": 5.5
+    }
+  },
+  "phases": [
+    {
+      "name": "Day",
+      "repeat": 30,
+      "cycles": [
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Day Fan",
+          "environment": "day_fan",
+          "duration_hours": 0.2
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Day Fan",
+          "environment": "day_fan",
+          "duration_hours": 0.2
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Day Fan",
+          "environment": "day_fan",
+          "duration_hours": 0.2
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Day Fan",
+          "environment": "day_fan",
+          "duration_hours": 0.2
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Day Fan",
+          "environment": "day_fan",
+          "duration_hours": 0.2
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Day Fan",
+          "environment": "day_fan",
+          "duration_hours": 0.2
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Day Fan",
+          "environment": "day_fan",
+          "duration_hours": 0.2
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Day Fan",
+          "environment": "day_fan",
+          "duration_hours": 0.2
+        },
+        {
+          "name": "Night",
+          "environment": "night",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Night Fan",
+          "environment": "night_fan",
+          "duration_hours": 0.2
+        },
+        {
+          "name": "Night",
+          "environment": "night",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Night Fan",
+          "environment": "night_fan",
+          "duration_hours": 0.2
+        },
+        {
+          "name": "Night",
+          "environment": "night",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Night Fan",
+          "environment": "night_fan",
+          "duration_hours": 0.2
+        },
+        {
+          "name": "Night",
+          "environment": "night",
+          "duration_hours": 1.8
+        },
+        {
+          "name": "Night Fan",
+          "environment": "night_fan",
+          "duration_hours": 0.2
+        }
+      ]
+    }
+  ]
+}

@@ -7,6 +7,12 @@ int r3 = 6;
 int r4 = 7;
 int relays[] = { r1, r2, r3, r4 };
 
+int i2c_on = 1;
+int i2c_off = 0;
+
+int on = LOW;
+int off = HIGH;
+
 void setup()
 {
   pinMode(r1, OUTPUT);
@@ -14,33 +20,33 @@ void setup()
   pinMode(r3, OUTPUT);
   pinMode(r4, OUTPUT);
 
-  digitalWrite(r1, LOW);
-  digitalWrite(r2, LOW);
-  digitalWrite(r3, LOW);
-  digitalWrite(r4, LOW);
+  digitalWrite(r1, off);
+  digitalWrite(r2, off);
+  digitalWrite(r3, off);
+  digitalWrite(r4, off);
   
   Wire.begin(4);                // join i2c bus with address #4
   Wire.onReceive(receiveEvent); // register event
   Serial.begin(9600);           // start serial for output
 
   // running relay checks
-  digitalWrite(r1, HIGH);
+  digitalWrite(r1, on);
   delay(500);
-  digitalWrite(r2, HIGH);
+  digitalWrite(r2, on);
   delay(500);
-  digitalWrite(r3, HIGH);
+  digitalWrite(r3, on);
   delay(500);
-  digitalWrite(r4, HIGH);
+  digitalWrite(r4, on);
 
   delay(2000);
   
-  digitalWrite(r1, LOW);
+  digitalWrite(r1, off);
   delay(500);
-  digitalWrite(r2, LOW);
+  digitalWrite(r2, off);
   delay(500);
-  digitalWrite(r3, LOW);
+  digitalWrite(r3, off);
   delay(500);
-  digitalWrite(r4, LOW);
+  digitalWrite(r4, off);
 }
 
 void loop()
@@ -60,7 +66,14 @@ void receiveEvent(int howMany)
     Serial.print(relayNr);
     Serial.print(" : ");
     Serial.println(relayState);
-    
-    digitalWrite(relays[relayNr], relayState);
+
+    if(relayState == i2c_on)
+    {
+      digitalWrite(relays[relayNr], on);
+    }
+    else 
+    {
+      digitalWrite(relays[relayNr], off);
+    }
   }
 }
