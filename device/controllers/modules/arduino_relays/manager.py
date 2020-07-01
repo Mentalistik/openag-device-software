@@ -124,11 +124,12 @@ class ArduinoRelaysControllerManager(manager.ControllerManager):
             elif self.sensor_value <= self.desired_sensor_value - self.cooling_tolerance:
                 self.desired_negative_actuator_percent = 0.0
 
-            # If cooling ran for cooling_try_minutes and desired value is still not reached then turn off and stay off for cooling_retry_minutes
-            if (datetime.datetime.now() - self.cooling_turn_on_time).total_seconds() / 60 >= self.cooling_try_minutes :
-                self.desired_negative_actuator_percent = 0.0
-                self.cooling_stay_off = True;
-                self.logger.warning(f"paused for {self.cooling_retry_minutes} minutes")
+            if self.desired_negative_actuator_percent == 100.0:
+                # If cooling ran for cooling_try_minutes and desired value is still not reached then turn off and stay off for cooling_retry_minutes
+                if (datetime.datetime.now() - self.cooling_turn_on_time).total_seconds() / 60 >= self.cooling_try_minutes :
+                    self.desired_negative_actuator_percent = 0.0
+                    self.cooling_stay_off = True;
+                    self.logger.warning(f"paused for {self.cooling_retry_minutes} minutes")
 
     # --------------------------------------------------------------------------------------
     def clear_reported_values(self) -> None:
