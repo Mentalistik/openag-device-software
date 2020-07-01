@@ -145,7 +145,7 @@ class SCD30Manager(manager.PeripheralManager):
         try:
             co2 = self.driver.read_co2()
         except exceptions.DriverError as e:
-            self.logger.debug("Unable to read humidity: {}".format(e))
+            self.logger.debug("Unable to read co2: {}".format(e))
             self.mode = modes.ERROR
             self.health = 0.0
             return

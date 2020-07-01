@@ -184,7 +184,7 @@ class EnvironmentViewer:
             reported = str(val)
             if isinstance( val, float ):
                 # limit to 2 decimal places  
-                reported = f'{val:.2f}'
+                reported = f'{val:.6f}'
 
             desired = "None"
             if variable in environment_dict[peripheral_type]["desired"]:
@@ -192,7 +192,7 @@ class EnvironmentViewer:
                 desired = str(val)
                 if isinstance( val, float ):
                     # limit to 2 decimal places  
-                    desired = f'{val:.2f}'
+                    desired = f'{val:.6f}'
 
             name_string = name + " (" + unit + ")"
             summary[name_string] = reported + " --> " + desired
