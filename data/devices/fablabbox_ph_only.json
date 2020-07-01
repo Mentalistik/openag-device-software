@@ -1,6 +1,6 @@
 {
   "format": "openag-standard-v1",
-  "name": "FabLab Box",
+  "name": "FabLab Box pH",
   "uuid": "6344b4e5-e5a3-4aed-bea8-071e74d71645",
   "peripherals": [
     {
