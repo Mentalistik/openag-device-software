@@ -7,7 +7,7 @@
   "parent_recipe_uuid": null,
   "support_recipe_uuids": null,
   "description": {
-    "brief": "Grumolo Verde needs 8-10 days of",
+    "brief": "Grumolo Verde needs 8-10 days to germinate",
     "verbose": "Grumolo Verde"
   },
   "authors": [
@@ -36,16 +36,7 @@
       "air_fan_percents": 0,
       "air_temperature_celsius": 25,
       "air_carbon_dioxide_ppm": 500,
-      "water_electrical_conductivity_ms_cm": 2,
-      "water_potential_hydrogen": 5.5
-    },
-    "day_fan": {
-      "name": "Day Fan",
-      "light_percents": 100,
-      "air_fan_percents": 100,
-      "air_temperature_celsius": 25,
-      "air_carbon_dioxide_ppm": 500,
-      "water_electrical_conductivity_ms_cm": 2,
+      "water_electrical_conductivity_ms_cm": 0.001,
       "water_potential_hydrogen": 5.5
     },
     "night": {
@@ -54,143 +45,24 @@
       "air_fan_percents": 0,
       "air_temperature_celsius": 20,
       "air_carbon_dioxide_ppm": 500,
-      "water_electrical_conductivity_ms_cm": 2,
-      "water_potential_hydrogen": 5.5
-    },
-    "night_fan": {
-      "name": "Night Fan",
-      "light_percents": 0,
-      "air_fan_percents": 100,
-      "air_temperature_celsius": 20,
-      "air_carbon_dioxide_ppm": 500,
-      "water_electrical_conductivity_ms_cm": 2,
+      "water_electrical_conductivity_ms_cm": 0.001,
       "water_potential_hydrogen": 5.5
     }
   },
   "phases": [
     {
-      "name": "Day",
+      "name": "Grow",
       "repeat": 30,
       "cycles": [
         {
           "name": "Day",
           "environment": "day",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Day Fan",
-          "environment": "day_fan",
-          "duration_hours": 0.2
-        },
-        {
-          "name": "Day",
-          "environment": "day",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Day Fan",
-          "environment": "day_fan",
-          "duration_hours": 0.2
-        },
-        {
-          "name": "Day",
-          "environment": "day",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Day Fan",
-          "environment": "day_fan",
-          "duration_hours": 0.2
-        },
-        {
-          "name": "Day",
-          "environment": "day",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Day Fan",
-          "environment": "day_fan",
-          "duration_hours": 0.2
-        },
-        {
-          "name": "Day",
-          "environment": "day",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Day Fan",
-          "environment": "day_fan",
-          "duration_hours": 0.2
-        },
-        {
-          "name": "Day",
-          "environment": "day",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Day Fan",
-          "environment": "day_fan",
-          "duration_hours": 0.2
-        },
-        {
-          "name": "Day",
-          "environment": "day",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Day Fan",
-          "environment": "day_fan",
-          "duration_hours": 0.2
-        },
-        {
-          "name": "Day",
-          "environment": "day",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Day Fan",
-          "environment": "day_fan",
-          "duration_hours": 0.2
+          "duration_hours": 16
         },
         {
           "name": "Night",
           "environment": "night",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Night Fan",
-          "environment": "night_fan",
-          "duration_hours": 0.2
-        },
-        {
-          "name": "Night",
-          "environment": "night",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Night Fan",
-          "environment": "night_fan",
-          "duration_hours": 0.2
-        },
-        {
-          "name": "Night",
-          "environment": "night",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Night Fan",
-          "environment": "night_fan",
-          "duration_hours": 0.2
-        },
-        {
-          "name": "Night",
-          "environment": "night",
-          "duration_hours": 1.8
-        },
-        {
-          "name": "Night Fan",
-          "environment": "night_fan",
-          "duration_hours": 0.2
+          "duration_hours": 8
         }
       ]
     }
