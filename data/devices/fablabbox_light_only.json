@@ -22,7 +22,7 @@
           "bus": 1,
           "is_active_high": true,
           "address": "0x11",
-          "port": 2
+          "port": 3
         }
       }
     }

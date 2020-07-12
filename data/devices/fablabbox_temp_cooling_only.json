@@ -45,7 +45,7 @@
           "bus": 1,
           "is_active_high": true,
           "address": "0x11",
-          "port": 0
+          "port": 1
         }
       }
     }

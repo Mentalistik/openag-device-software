@@ -136,7 +136,7 @@
           "bus": 1,
           "is_active_high": true,
           "address": "0x11",
-          "port": 0
+          "port": 1
         }
       }
     },
@@ -159,7 +159,7 @@
           "bus": 1,
           "is_active_high": true,
           "address": "0x11",
-          "port": 1
+          "port": 2
         }
       }
     },
@@ -182,7 +182,7 @@
           "bus": 1,
           "is_active_high": true,
           "address": "0x11",
-          "port": 2
+          "port": 3
         }
       }
     }
