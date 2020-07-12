@@ -87,15 +87,16 @@ class I2C(object):
 
     def verify_device(self) -> None:
         """Verifies device exists by trying to read a byte from it."""
-        try:
-            #self.logger.debug("Verifying device exists")
-            byte = self.read(1, retry=True)
-        except ReadError as e:
-            message = "Unable to verify device exists, read error"
-            raise InitError(message, logger=self.logger) from e
-        except MuxError as e:
-            message = "Unable to verify device exists, mux error"
-            raise InitError(message, logger=self.logger) from e
+        # needed to comment this out because the I2C Relay could not be verified with that code
+        #try:
+        #    #self.logger.debug("Verifying device exists")
+        #    byte = self.read(1, retry=True)
+        #except ReadError as e:
+        #    message = "Unable to verify device exists, read error"
+        #    raise InitError(message, logger=self.logger) from e
+        #except MuxError as e:
+        #    message = "Unable to verify device exists, mux error"
+        #    raise InitError(message, logger=self.logger) from e
 
     @retry((WriteError, MuxError), tries=5, delay=0.2, backoff=3)
     def write(

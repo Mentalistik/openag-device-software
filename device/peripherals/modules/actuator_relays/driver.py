@@ -13,8 +13,15 @@ from device.utilities.communication.i2c.mux_simulator import MuxSimulator
 # Import driver elements
 from device.peripherals.modules.actuator_relays import exceptions, simulator
 
-class ArduinoRelaysDriver:
+class RelaysDriver:
     """Driver for ArduinoRelays digital to analog converter."""
+
+    CMD_CHANNEL_CTRL = 0x10
+    CMD_SAVE_I2C_ADDR = 0x11
+    CMD_READ_I2C_ADDR = 0x12
+    CMD_READ_FIRMWARE_VER = 0x13
+
+    channel_state = 0;
 
     def __init__(
         self,
@@ -71,8 +78,9 @@ class ArduinoRelaysDriver:
         with self.i2c_lock:
 
             # Send set output command
+            self.channel_state |= (1 << (port - 1));
             try:
-                self.i2c.write(bytes([port, 1]), disable_mux=disable_mux)
+                self.i2c.write(bytes([self.CMD_CHANNEL_CTRL, self.channel_state]), disable_mux=disable_mux)
             except I2CError as e:
                 raise exceptions.SetHighError(logger=self.logger) from e
 
@@ -86,10 +94,11 @@ class ArduinoRelaysDriver:
             raise exceptions.SetLowError(message=message, logger=self.logger)
 
         # Lock thread in case we have multiple io expander instances
+        self.channel_state &= ~(1 << (port - 1));
         with self.i2c_lock:
 
             # Send set output command
             try:
-                self.i2c.write(bytes([port, 0]), disable_mux=disable_mux)
+                self.i2c.write(bytes([self.CMD_CHANNEL_CTRL, self.channel_state]), disable_mux=disable_mux)
             except I2CError as e:
                 raise exceptions.SetHighError(logger=self.logger) from e

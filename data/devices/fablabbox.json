@@ -135,7 +135,7 @@
         "communication": {
           "bus": 1,
           "is_active_high": true,
-          "address": "0x04",
+          "address": "0x11",
           "port": 0
         }
       }
@@ -158,7 +158,7 @@
         "communication": {
           "bus": 1,
           "is_active_high": true,
-          "address": "0x04",
+          "address": "0x11",
           "port": 1
         }
       }
@@ -181,7 +181,7 @@
         "communication": {
           "bus": 1,
           "is_active_high": true,
-          "address": "0x04",
+          "address": "0x11",
           "port": 2
         }
       }

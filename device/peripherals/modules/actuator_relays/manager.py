@@ -71,7 +71,7 @@ class ActuatorRelaysManager(manager.PeripheralManager):
 
         # Initialize driver
         try:
-            self.driver = driver.ArduinoRelaysDriver(
+            self.driver = driver.RelaysDriver(
                 name=self.name,
                 i2c_lock=self.i2c_lock,
                 bus=self.bus,

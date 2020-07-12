@@ -27,7 +27,7 @@
 			},
 			"address": {
 				"type": "string",
-				"default": "0x04"
+				"default": "0x11"
 			},
 			"port": {
 				"type": "number",

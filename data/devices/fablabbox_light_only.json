@@ -1,0 +1,47 @@
+{
+  "format": "openag-standard-v1",
+  "name": "FabLab Box Light Relay Only",
+  "uuid": "c70362fd-5797-4765-9343-b5d2802a22a6",
+  "peripherals": [
+    {
+      "name": "Light",
+      "type": "ArduinoRelay",
+      "uuid": "ca680299-2ee3-4f20-9198-5f0546e57afb",
+      "parameters": {
+        "setup": {
+          "name": "Fan",
+          "file_name": "actuator_relays/setups/light"
+        },
+        "variables": {
+          "sensor": null,
+          "actuator": {
+            "output_variable": "light_output_percent"
+          }
+        },
+        "communication": {
+          "bus": 1,
+          "is_active_high": true,
+          "address": "0x11",
+          "port": 2
+        }
+      }
+    }
+  ],
+  "controllers": [
+    {
+      "name": "Light Controller",
+      "type": "ArduinoRelaysController",
+      "uuid": "4cdbdcaa-50d0-4166-8179-127ef2276c42",
+      "parameters": {
+        "setup": {
+          "name": "Arduino Relays Controller",
+          "file_name": "arduino_relays/setups/light"
+        },
+        "variables": {
+          "desired_percent_name": "light_percents",
+          "negative_actuator_name": "light_output_percent"
+        }
+      }
+    }
+  ]
+}
