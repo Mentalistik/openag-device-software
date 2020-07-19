@@ -1,5 +1,7 @@
 # Import standard python modules
-import time, threading
+import time
+import threading
+import os
 
 # Import python types
 from typing import NamedTuple, Optional, Dict
@@ -21,19 +23,19 @@ class RelaysDriver:
     CMD_READ_I2C_ADDR = 0x12
     CMD_READ_FIRMWARE_VER = 0x13
 
-    channel_state = 0;
+    channel_state = 0
 
-    def __init__(
-        self,
+    channel_state_path = "/tmp/channel_state"
+
+    def __init__(self,
         name: str,
         i2c_lock: threading.RLock,
         bus: int,
         address: int,
-        mux: Optional[int] = None,
-        channel: Optional[int] = None,
-        simulate: bool = False,
-        mux_simulator: Optional[MuxSimulator] = None,
-    ) -> None:
+        mux: Optional[int]=None,
+        channel: Optional[int]=None,
+        simulate: bool=False,
+        mux_simulator: Optional[MuxSimulator]=None,) -> None:
         """Initializes ArduinoRelays."""
 
         # Initialize logger
@@ -60,12 +62,11 @@ class RelaysDriver:
                 mux=mux,
                 channel=channel,
                 mux_simulator=mux_simulator,
-                PeripheralSimulator=Simulator,
-            )
+                PeripheralSimulator=Simulator,)
         except I2CError as e:
             raise exceptions.InitError(logger=self.logger) from e
 
-    def set_high(self, port: int, retry: bool = True, disable_mux: bool = False) -> None:
+    def set_high(self, port: int, retry: bool=True, disable_mux: bool=False) -> None:
         """Sets port high."""
         self.logger.debug("Setting port {} high".format(port))
 
@@ -77,14 +78,17 @@ class RelaysDriver:
         # Lock thread in case we have multiple io expander instances
         with self.i2c_lock:
 
-            # Send set output command
-            self.channel_state |= (1 << (port - 1));
             try:
+                # Read, update and save the current channel state
+                self.read_channel_state()
+                self.channel_state |= (1 << (port - 1))
+                self.write_channel_state()
+                # Send set output command
                 self.i2c.write(bytes([self.CMD_CHANNEL_CTRL, self.channel_state]), disable_mux=disable_mux)
             except I2CError as e:
                 raise exceptions.SetHighError(logger=self.logger) from e
 
-    def set_low(self, port: int, retry: bool = True, disable_mux: bool = False) -> None:
+    def set_low(self, port: int, retry: bool=True, disable_mux: bool=False) -> None:
         """Sets port low."""
         self.logger.debug("Setting port {} low".format(port))
 
@@ -94,11 +98,29 @@ class RelaysDriver:
             raise exceptions.SetLowError(message=message, logger=self.logger)
 
         # Lock thread in case we have multiple io expander instances
-        self.channel_state &= ~(1 << (port - 1));
         with self.i2c_lock:
-
-            # Send set output command
+            
             try:
+                # Read, update and save the current channel state
+                self.read_channel_state()
+                self.channel_state &= ~(1 << (port - 1))
+                self.write_channel_state()
+                # Send set output command
                 self.i2c.write(bytes([self.CMD_CHANNEL_CTRL, self.channel_state]), disable_mux=disable_mux)
             except I2CError as e:
                 raise exceptions.SetHighError(logger=self.logger) from e
+    
+    def write_channel_state(self) -> None:
+        f = open(self.channel_state_path, 'w')
+        f.write(str(self.channel_state))
+
+    def read_channel_state(self) -> None:
+        if os.path.exists(self.channel_state_path):
+            f = open(self.channel_state_path, 'r')
+            read_state_string = f.read()
+            if read_state_string == '':
+                self.channel_state = 0
+            else:
+                self.channel_state = int(read_state_string)
+        else:
+            self.write_channel_state();
