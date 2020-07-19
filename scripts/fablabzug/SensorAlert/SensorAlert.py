@@ -28,6 +28,7 @@ def read_current_environment_and_create_alert_message():
 
     # Check if any value is outside configured range
     sensorAlertString = ""
+    sensorStatusString = "";
     sensorConfiguration = config["sensors"]
 
     for sensor in sensorValues.items():
@@ -40,12 +41,17 @@ def read_current_environment_and_create_alert_message():
                 min = sensorConfig["min"]
                 max = sensorConfig["max"]
 
-                if sensorValue > max:
-                    sensorAlertString += "{}: zu hoch {} (Max {})\n".format(sensorName, round(sensorValue, 1), max);
-                elif sensorValue < min:
-                    sensorAlertString += "{}: zu tief {} (Min {})\n".format(sensorName, round(sensorValue, 1), min);
+                if type(sensorValue) != float:
+                    sensorStatusString += "{}: kein Wert {} (Min {}, Max {})\n".format(sensorName, sensorValue, min, max);
+                else:
+                    if sensorValue > max:
+                        sensorAlertString += "{}: zu hoch {} (Min {}, Max {})\n".format(sensorName, sensorValue, min, max);
+                    elif sensorValue < min:
+                        sensorAlertString += "{}: zu tief {} (Min {}, Max {})\n".format(sensorName, sensorValue, min, max);
+                    else:
+                        sensorStatusString += "{}: OK {} (Min {}, Max {})\n".format(sensorName, sensorValue, min, max);
 
-    return sensorAlertString
+    return "Werte ausserhalb des idealen Bereichs:\n\n" + sensorAlertString + "\nDiese Werte sind OK:\n\n" + sensorStatusString
 
 # Sending email alert
 gmail_user = config["email_account"]["email"]
@@ -56,7 +62,7 @@ to = config["email_recipients"]
 
 sensorString = read_current_environment_and_create_alert_message()
 if sensorString != '':
-    body = "Einer oder mehrere Werte sind ausserhalb des idealen Bereichs:\n" + sensorString
+    body = sensorString
     
     #Setup the MIME
     message = MIMEMultipart()

@@ -4,7 +4,7 @@
     {
       "name": "air_temperature_celsius",
       "min": 22,
-      "max": 26
+      "max": 30
     },
     {
       "name": "air_humidity_percent",
@@ -15,6 +15,21 @@
       "name": "air_carbon_dioxide_ppm",
       "min": 400,
       "max": 1000
+    },
+    {
+      "name": "water_electrical_conductivity_ms_cm",
+      "min": 0.0008,
+      "max": 0.0015
+    },
+    {
+      "name": "water_potential_hydrogen",
+      "min": 5.5,
+      "max": 7
+    },
+    {
+      "name": "water_temperature_celsius",
+      "min": 22,
+      "max": 30
     }
   ],
   "email_account": {
