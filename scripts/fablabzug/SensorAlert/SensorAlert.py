@@ -1,10 +1,21 @@
 import os
+import sys
 import smtplib
 import json
 import sqlite3
 from sqlite3 import Error
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+# Email strings
+sensorAlertString = ""
+sensorStatusString = ""
+
+# Argument
+sendStatusMail = False
+if len(sys.argv) == 2 and sys.argv[1] == 'status':
+    print('Status mail mode')
+    sendStatusMail = True;
 
 # Configuration
 config = None
@@ -27,9 +38,10 @@ def read_current_environment_and_create_alert_message():
     sensorValues = environment["sensor"]["reported"]
 
     # Check if any value is outside configured range
-    sensorAlertString = ""
-    sensorStatusString = "";
     sensorConfiguration = config["sensors"]
+
+    global sensorAlertString
+    global sensorStatusString
 
     for sensor in sensorValues.items():
         sensorName = sensor[0]
@@ -53,31 +65,34 @@ def read_current_environment_and_create_alert_message():
 
     return "Werte ausserhalb des idealen Bereichs:\n\n" + sensorAlertString + "\nDiese Werte sind OK:\n\n" + sensorStatusString
 
-# Sending email alert
-gmail_user = config["email_account"]["email"]
-gmail_password = config["email_account"]["password"]
+def sendEmail():
+    # Sending email alert
+    gmail_user = config["email_account"]["email"]
+    gmail_password = config["email_account"]["password"]
 
-sent_from = gmail_user
-to = config["email_recipients"]
+    sent_from = gmail_user
+    to = config["email_recipients"]
 
-sensorString = read_current_environment_and_create_alert_message()
-if sensorString != '':
-    body = sensorString
+    sensorString = read_current_environment_and_create_alert_message()
+    if sendStatusMail == True or sendStatusMail == False and sensorAlertString != '':
+        body = sensorString
     
-    #Setup the MIME
-    message = MIMEMultipart()
-    message['From'] = sent_from
-    message['To'] = to[0]
-    message['Subject'] = 'Sensor Alarm'   #The subject line
-    #The body and the attachments for the mail
-    message.attach(MIMEText(body, 'plain'))
+        #Setup the MIME
+        message = MIMEMultipart()
+        message['From'] = sent_from
+        message['To'] = to[0]
+        message['Subject'] = 'Status Update' if sendStatusMail else 'Sensor Alarm'  #The subject line
+        #The body and the attachments for the mail
+        message.attach(MIMEText(body, 'plain'))
 
-    try:
-        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-        server.ehlo()
-        server.login(gmail_user, gmail_password)
-        server.sendmail(sent_from, to, message.as_string())
-        server.close()
+        try:
+            server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+            server.ehlo()
+            server.login(gmail_user, gmail_password)
+            server.sendmail(sent_from, to, message.as_string())
+            server.close()
 
-        print('Email sent!')
-    except Exception as e: print(e)
+            print('Email sent')
+        except Exception as e: print(e)
+
+sendEmail()
