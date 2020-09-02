@@ -1,0 +1,154 @@
+{
+  "format": "openag-phased-environment-v1",
+  "version": "1",
+  "creation_timestamp_utc": "2018-12-05T16:45:41Z",
+  "name": "FabLabBox Grumolo Verde (Salad)",
+  "uuid": "a4c5ef20-f70a-4bea-b924-eddea78493c3",
+  "parent_recipe_uuid": null,
+  "support_recipe_uuids": null,
+  "description": {
+    "brief": "Grumolo Verde needs 8-10 days to germinate",
+    "verbose": "Grumolo Verde"
+  },
+  "authors": [
+    {
+      "name": "Nijo Scheibner",
+      "email": "n.scheibner@gmx.ch",
+      "uuid": "6ba16b27-1990-4413-8a88-787ae3a5afb0"
+    }
+  ],
+  "cultivars": [
+    {
+      "name": "None",
+      "uuid": "50c0bbc3-4dbd-4766-a408-3da3088ed4eb"
+    }
+  ],
+  "cultivation_methods": [
+    {
+      "name": "None",
+      "uuid": "20287ab3-54e5-49a7-a187-2e2fd71b2a5f"
+    }
+  ],
+  "environments": {
+    "day": {
+      "name": "Day",
+      "light_percents": 100,
+      "air_fan_percents": 0,
+      "air_temperature_celsius": 25,
+      "air_carbon_dioxide_ppm": 500,
+      "water_electrical_conductivity_ms_cm": 0.001,
+      "water_potential_hydrogen": 5.5
+    },
+    "day-indoor-fan": {
+      "name": "Day Indoor Fan",
+      "light_percents": 100,
+      "air_fan_percents": 100,
+      "air_temperature_celsius": 25,
+      "air_carbon_dioxide_ppm": 500,
+      "water_electrical_conductivity_ms_cm": 0.001,
+      "water_potential_hydrogen": 5.5
+    },
+    "night": {
+      "name": "Night",
+      "light_percents": 0,
+      "air_fan_percents": 0,
+      "air_temperature_celsius": 20,
+      "air_carbon_dioxide_ppm": 500,
+      "water_electrical_conductivity_ms_cm": 0.001,
+      "water_potential_hydrogen": 5.5
+    }
+  },
+  "phases": [
+    {
+      "name": "Grow",
+      "repeat": 30,
+      "cycles": [
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.5
+        },
+        {
+          "name": "Day Indoor Fan",
+          "environment": "day-indoor-fan",
+          "duration_hours": 0.5
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.5
+        },
+        {
+          "name": "Day Indoor Fan",
+          "environment": "day-indoor-fan",
+          "duration_hours": 0.5
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.5
+        },
+        {
+          "name": "Day Indoor Fan",
+          "environment": "day-indoor-fan",
+          "duration_hours": 0.5
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.5
+        },
+        {
+          "name": "Day Indoor Fan",
+          "environment": "day-indoor-fan",
+          "duration_hours": 0.5
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.5
+        },
+        {
+          "name": "Day Indoor Fan",
+          "environment": "day-indoor-fan",
+          "duration_hours": 0.5
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.5
+        },
+        {
+          "name": "Day Indoor Fan",
+          "environment": "day-indoor-fan",
+          "duration_hours": 0.5
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.5
+        },
+        {
+          "name": "Day Indoor Fan",
+          "environment": "day-indoor-fan",
+          "duration_hours": 0.5
+        },
+        {
+          "name": "Day",
+          "environment": "day",
+          "duration_hours": 1.5
+        },
+        {
+          "name": "Day Indoor Fan",
+          "environment": "day-indoor-fan",
+          "duration_hours": 0.5
+        },
+        {
+          "name": "Night",
+          "environment": "night",
+          "duration_hours": 8
+        }
+      ]
+    }
+  ]
+}
