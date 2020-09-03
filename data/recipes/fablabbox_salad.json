@@ -2,7 +2,7 @@
   "format": "openag-phased-environment-v1",
   "version": "1",
   "creation_timestamp_utc": "2018-12-05T16:45:41Z",
-  "name": "FabLabBox Grumolo Verde (Salad)",
+  "name": "FabLabBox Grumolo Verde with fan (Salad)",
   "uuid": "8d0b5c57-4635-4c9e-a9b6-2936e8d5a00a",
   "parent_recipe_uuid": null,
   "support_recipe_uuids": null,
